@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <title>Personality Predictor</title>
+    <style>
+      .layout {
+        background: white;
+        margin: 40px 100px 100px 100px;
+      }
+
+      .form-control:focus {
+        border-color: orange;
+        box-shadow: 0 0 0 0.2rem rgba(249, 133, 25, 0.629);
+      }
+
+      .form-select:focus {
+        border-color: orange;
+        box-shadow: 0 0 0 0.2rem rgba(249, 133, 25, 0.629);
+      }
+
+
+
+      .form-label {
+        font-weight: bold;
+      }
+
+      h1 {
+        text-align: center;
+        color: Orange;
+        font-weight: bold;
+        font-size: 50px;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        margin: 30px 30px 20px 20px;
+        font-size: 20px;
+        width: 50%;
+      }
+
+      .submit-btn {
+        width: auto;
+        display: flex;
+        justify-content: center;
+      }
+
+      .parent-grid {
+        display: grid;
+        grid-template-areas:
+          "header"
+          "form"
+          "submit";
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-areas: "item1 item2";
+        gap: 20px;
+        border: 3px;
+        border-style: solid;
+        border-color: orange;
+        border-radius: 20px;
+        padding: 40px;
+      }
+    </style>
+
+    <script>
+      function onFormSubmit() {
+        document.getElementById("input_form").submit();
+      }
+    </script>
+  </head>
+  <body>
+    <div class="layout">
+      <h1>Personality Predictor</h1>
+      <form class="grid-container parent-grid" id="input_form" method="POST" action="/submit">
+        <div class="mb-3">
+          <label class="form-label"> AGE </label>
+          <input
+            name="age"
+            type="number"
+            class="form-control"
+            placeholder="Enter your age"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> OPENNESS </label>
+          <input
+            name="openness"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> NEUROTICISM </label>
+          <input
+            name="neuroticism"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">CONSCIENTIOUSNESS</label>
+          <input
+            name="conscientiousness"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">AGREEABLENESS</label>
+          <input
+            name="agreeableness"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">EXTRAVERSION</label>
+          <input
+            name="extraversion"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> GENDER </label>
+          <select class="form-select" aria-label="Default select example" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </form>
+      <div class="submit-btn">
+        <button
+          type="submit"
+          onclick="onFormSubmit()"
+          class="btn btn-warning"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
