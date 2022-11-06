@@ -8,7 +8,7 @@ scaler = StandardScaler()
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('form.html')
 
 @app.route('/submit',methods = ['POST', 'GET'])
 def result():
