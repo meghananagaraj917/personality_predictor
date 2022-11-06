@@ -13,7 +13,6 @@ le = LabelEncoder()
 data['Gender'] = le.fit_transform(data['Gender'])
 input_cols = ['Gender', 'Age', 'openness', 'neuroticism', 'conscientiousness', 'agreeableness', 'extraversion']
 output_cols = ['Personality (Class label)']
-
 scaler = StandardScaler()
 data[input_cols] = scaler.fit_transform(data[input_cols])
 data.head()

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <title>Personality Predictor</title>
+    <style>
+      .layout {
+        background: white;
+        margin: 40px 100px 100px 100px;
+      }
+
+      .form-control:focus {
+        border-color: orange;
+        box-shadow: 0 0 0 0.2rem rgba(249, 133, 25, 0.629);
+      }
+
+      .form-select:focus {
+        border-color: orange;
+        box-shadow: 0 0 0 0.2rem rgba(249, 133, 25, 0.629);
+      }
+
+      .form-label {
+        font-weight: bold;
+      }
+
+      h1 {
+        text-align: center;
+        color: Orange;
+        font-weight: bold;
+        font-size: 50px;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        margin: 30px 30px 20px 20px;
+        font-size: 20px;
+        width: 50%;
+      }
+
+      .submit-btn {
+        width: auto;
+        display: flex;
+        justify-content: center;
+      }
+
+      .parent-grid {
+        display: grid;
+        grid-template-areas:
+          "header"
+          "form"
+          "submit";
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-areas: "item1 item2";
+        gap: 20px;
+        border: 3px;
+        border-style: solid;
+        border-color: orange;
+        border-radius: 20px;
+        padding: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <h1>Personality Predictor</h1>
+      <form
+        class="grid-container parent-grid"
+        id="input_form"
+        method="POST"
+        action="/submit"
+      >
+        <div class="mb-3">
+          <label class="form-label"> AGE </label>
+          <input
+            name="age"
+            type="number"
+            class="form-control"
+            placeholder="Enter your age"
+            id="age"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> OPENNESS </label>
+          <input
+            name="openness"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+            id="openness"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> NEUROTICISM </label>
+          <input
+            name="neuroticism"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+            id="neuroticism"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">CONSCIENTIOUSNESS</label>
+          <input
+            name="conscientiousness"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+            id="conscientiousness"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">AGREEABLENESS</label>
+          <input
+            name="agreeableness"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+            id="agreeableness"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">EXTRAVERSION</label>
+          <input
+            name="extraversion"
+            type="number"
+            class="form-control"
+            placeholder="Rate yourself from 1-8"
+            id="extraversion"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label"> GENDER </label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="gender"
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </form>
+      <div class="submit-btn">
+        <button type="submit" onclick="onFormSubmit()" class="btn btn-warning">
+          Submit
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function onFormSubmit() {
+    if(isAgeValid && isOpennessValid && isNeuroticismValid && isConscientiousnessValid && isAgreeablenessValid && isExtraversionValid) {
+        document.getElementById("input_form").submit();
+        console.log("Form submitted");
+
+    } else {
+      alert("You have entered 1 or more invalid data");
+    }
+    
+  }
+
+  const age = document.getElementById("age");
+  var isAgeValid = false;
+  var isOpennessValid = false;
+  var isNeuroticismValid = false;
+  var isConscientiousnessValid = false;
+  var isAgreeablenessValid = false;
+  var isExtraversionValid = false;
+
+  age.addEventListener("input", (event) => {
+    console.log(age.value);
+    if (age.value<=0 || age.value > 100) {
+      alert("You have entered 1 or more invalid data");
+      age.setCustomValidity("Invalid age entered. Age should be between 1 - 100");
+      age.reportValidity();
+      isAgeValid = false;
+    } else {
+      age.setCustomValidity("");
+      isAgeValid = true;
+    }
+  });
+
+
+  const openness = document.getElementById("openness");
+
+  openness.addEventListener("input", (event) => {
+    console.log(openness.value);
+    if (openness.value<=0 || openness.value > 8) {
+      alert("You have entered 1 or more invalid data");
+      openness.setCustomValidity("Range should be within 1 - 8");
+      openness.reportValidity();
+      isOpennessValid = false;
+    } else {
+      openness.setCustomValidity("");
+      isOpennessValid = true;
+    }
+  });
+
+  const neuroticism = document.getElementById("neuroticism");
+
+  neuroticism.addEventListener("input", (event) => {
+    console.log(neuroticism.value);
+    if (neuroticism.value<=0 || neuroticism.value > 8) {
+      alert("You have entered 1 or more invalid data");
+      neuroticism.setCustomValidity("Range should be within 1 - 8");
+      neuroticism.reportValidity();
+      isNeuroticismValid = false;
+    } else {
+      neuroticism.setCustomValidity("");
+      isNeuroticismValid = true;
+    }
+  });
+
+  const conscientiousness = document.getElementById("conscientiousness");
+
+  conscientiousness.addEventListener("input", (event) => {
+    console.log(conscientiousness.value);
+    if (conscientiousness.value<=0 || conscientiousness.value > 8) {
+      alert("You have entered 1 or more invalid data");
+      conscientiousness.setCustomValidity("Range should be within 1 - 8");
+      conscientiousness.reportValidity();
+      isConscientiousnessValid = false;
+    } else {
+      conscientiousness.setCustomValidity("");
+      isConscientiousnessValid = true;
+    }
+  });
+
+  const agreeableness = document.getElementById("agreeableness");
+
+  agreeableness.addEventListener("input", (event) => {
+    console.log(agreeableness.value);
+    if (agreeableness.value<=0 || agreeableness.value > 8) {
+      alert("You have entered 1 or more invalid data");
+      agreeableness.setCustomValidity("Range should be within 1 - 8");
+      agreeableness.reportValidity();
+      isAgreeablenessValid = false;
+    } else {
+      agreeableness.setCustomValidity("");
+      isAgreeablenessValid = true;
+    }
+  });
+
+  const extraversion = document.getElementById("extraversion");
+
+  extraversion.addEventListener("input", (event) => {
+    console.log(extraversion.value);
+    if (extraversion.value<=0 || extraversion.value > 8) {
+      alert("You have entered 1 or more invalid data");
+      extraversion.setCustomValidity("Range should be within 1 - 8");
+      extraversion.reportValidity();
+      isExtraversionValid = false;
+    } else {
+      extraversion.setCustomValidity("");
+      isExtraversionValid = true;
+    }
+  });
+</script>

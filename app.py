@@ -29,6 +29,7 @@ def result():
       result = np.array([gender_no, age, openness,neuroticism, conscientiousness, agreeableness, extraversion], ndmin = 2)
       final = scaler.fit_transform(result)
       personality = str(model.predict(final)[0])
+      print(personality)
       return render_template("submit.html",answer = personality)
 
 if __name__ == '__main__':
